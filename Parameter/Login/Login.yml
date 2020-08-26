@@ -1,0 +1,19 @@
+dec: 用户列表，用于用户的增删改查
+parameters:
+  - url: /api/invpn/users
+    desc: 获取用户列表
+    method: get
+    data: {}
+    header: {
+      "Content-Type": "application/json"
+    }
+    body: {}
+
+  - url: /api/invpn/user
+    desc: 创建用户
+    method: post
+    data: {language: 1}
+    header: {
+      "Content-Type": "application/json"
+    }
+    body: {}
