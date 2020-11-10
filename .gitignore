@@ -3,3 +3,4 @@ test.py
 Report/*
 .pytest_cache
 .idea
+.idea/*
