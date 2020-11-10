@@ -1,6 +1,6 @@
 server_info:
-  base_url: beta.inconnect.inhand.design
-  protocol: http
-  username: xxx
-  password: xxx
+  base_url: www.cnblogs.com
+  protocol: https
+  username: xxxxxxxx
+  password: xxxxxxxx
   verify: false

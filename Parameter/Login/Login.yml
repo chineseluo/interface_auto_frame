@@ -1,19 +1,12 @@
-dec: 用户列表，用于用户的增删改查
+description: 获取blog权限接口信息
 parameters:
-  - url: /api/invpn/users
-    desc: 获取用户列表
+  - url: /chineseluo/ajax/blogSubscription
+    desc: 用户权限
     method: get
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+    params: {}
     data: {}
-    header: {
-      "Content-Type": "application/json"
-    }
-    body: {}
+    json: {}
 
-  - url: /api/invpn/user
-    desc: 创建用户
-    method: post
-    data: {language: 1}
-    header: {
-      "Content-Type": "application/json"
-    }
-    body: {}

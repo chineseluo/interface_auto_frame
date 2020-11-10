@@ -17,7 +17,7 @@ import os
 def get_roots_dirs_files_list(dir_path):
     """
     获取当前文件夹下的根路径，文件夹，文件
-    :param file_path:
+    :param dir_path:
     :return:
     """
     roots = []
