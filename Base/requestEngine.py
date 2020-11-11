@@ -12,12 +12,11 @@
 ------------------------------------
 """
 import logging
-from loguru import logger
 import re
 from typing import Text, List, Dict, Tuple
 import jmespath
 from models.models import OSTReqRespData, OSTReqArgv
-from baseRequest import BaseRequest
+from .baseRequest import BaseRequest
 
 
 def check_assertion(res, checker):
@@ -34,19 +33,19 @@ def check_assertion(res, checker):
                 try:
                     assert extract_resp == assert_item[1]
                 except AssertionError:
-                    logger.error(f"Assert Fail,Expected Value：{assert_item[1]},Response Data：{res}")
+                    logging.error(f"Assert Fail,Expected Value：{assert_item[1]},Response Data：{res}")
             else:
-                logger.error(f"Assert Fail,Get Assert Object Fail：{assert_item}")
+                logging.error(f"Assert Fail,Get Assert Object Fail：{assert_item}")
                 raise AssertionError
     elif isinstance(checker, Text):
         extract_resp = jmespath.search(res, checker[0])
         try:
             assert extract_resp == checker[1]
         except AssertionError:
-            logger.error(f"Assert Fail,Expected Value：{checker[1]}，响应数据：{res}")
+            logging.error(f"Assert Fail,Expected Value：{checker[1]}，响应数据：{res}")
             raise AssertionError
     else:
-        logger.error(f"请输入正确的检查器参数，仅支持list or tuple，错误参数为：{checker}")
+        logging.error(f"请输入正确的检查器参数，仅支持list or tuple，错误参数为：{checker}")
 
 
 def url_replace(url: Text, url_converter) -> Text:
@@ -73,7 +72,7 @@ def start_run_case(params_object, params_mark, session_connection=None, checker=
     params_obj = params_object()
     params_dict = params_obj.get_param_by_yaml(params_mark)
     req = BaseRequest()
-    logger.info(params_dict)
+    logging.info(params_dict)
     # 注入请求数据
     if session_connection:
         params_dict['header'].update(session_connection)
@@ -90,7 +89,7 @@ def start_run_case(params_object, params_mark, session_connection=None, checker=
     if files:
         params_dict['files'].update(files)
     # receive a request and response object
-    logger.info(params_dict['params'])
+    logging.info(params_dict['params'])
     ost_req_argv = OSTReqArgv(
         part_url=part_url,
         method=params_dict['method'].upper(),
@@ -100,7 +99,7 @@ def start_run_case(params_object, params_mark, session_connection=None, checker=
         headers=params_dict['headers'],
         **kwargs
     )
-    logger.info(ost_req_argv)
+    logging.info(ost_req_argv)
     ost_rep_resp = req.send_request(part_url=part_url, method=params_dict['method'].upper(),
                                     send_params=None, send_data=params_dict['data'],
                                     send_json=params_dict['json'], headers=params_dict['headers'], **kwargs)

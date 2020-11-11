@@ -26,6 +26,7 @@ class AutoInjection:
     def __init__(self, *args):
         self.interface_info = []
         self.__read_yaml(*args)
+        logging.info(f"{self.__class__.__name__} Yaml object injection in progress")
 
     def __read_yaml(self, *args):
         """

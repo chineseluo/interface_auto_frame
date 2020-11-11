@@ -15,7 +15,6 @@ import os
 import jmespath
 import requests
 import logging
-from loguru import logger
 from models.consolelog import log_output
 from models.models import OSTRespData, OSTReqData, OSTReqRespData, MethodEnum, OSTReqArgv
 from Common.FileOption.yamlOption import YamlFileOption
@@ -39,12 +38,12 @@ class BaseRequest:
 
     @staticmethod
     def __get(url, params=None, jmespath_rule=None, **kwargs):
-        logger.info(url)
-        logger.info(params)
+        logging.info(url)
+        logging.info(params)
         if jmespath_rule:
             get_result = jmespath.search(jmespath_rule, requests.get(url=url, params=params, **kwargs).json())
         else:
-            logger.info("进入get")
+            logging.info("进入get")
             get_result = requests.get(url=url, params=params, **kwargs)
         return get_result
 
@@ -118,7 +117,7 @@ class BaseRequest:
             request=ost_req,
             response=ost_resp
         )
-        logger.info(f"输出对象{ost_rep_resp}")
+        logging.info(f"输出对象{ost_rep_resp}")
         return ost_rep_resp
 
 

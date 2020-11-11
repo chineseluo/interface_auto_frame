@@ -1,4 +1,4 @@
-```
+```markdown
 # 简介
 
 接口自动化测试框架：pytest+requests+allure
@@ -20,7 +20,7 @@
 2. 打开pycharm的terminal，切换到 requirements.txt 所在的目录下，使用如下命令 ，就能在当前的 python 环境中导入所有需要的包：
 
 ```
-   pip install -r requirements.txt
+pip install -r requirements.txt
    ```
 
 环境说明：
@@ -41,9 +41,6 @@
 
 封装操作接口请求方法、断言等
 
-- assertMethod.py封装断言的方法，断言失败截图，按需自己可以进行封装
-- base封装页面元素操作方法
-
 ## Common模块
 
 封装的读取配置文件的公共方法，类似于util工具类
@@ -52,18 +49,11 @@
 
 存放全局配置文件
 
-- config.yaml中存放全局配置文件，当前包含两个
-  - allure_environment：存放allure报告中环境描述初始化文件
-  - test_info：测试地址
-- selenium_config.yaml：存放selenium远程分布式调用配置文件
+- config.yaml中存放全局配置文件
 
-## PageObject模块
+## Parameter模块
 
-提取页面对象封装公共操作方法
-
-- 使用yaml文件进行页面元素的管理
-- 使用elem_params.py进行yaml文件注入，生成yaml文件对象
-- 页面对象初始化页面元素对象，调用base层，封装元素操作方法
+用于处理yaml文件对象
 
 ## Report模块
 
@@ -171,22 +161,6 @@ parameters:
            super(Login, self).__init__(self.__class__.__name__)
    ```
 
-3. 在PageObject下Login_page模块创建一个login_page.py封装login页面操作元素，导入Login_page.yaml文件对象，初始化，然后获取yaml文件中封装的元素，底层通过传入locator定位器（元组），进行页面元素操作
-
-   ```python
-   # !/user/bin/env python
-   # -*- coding: utf-8 -*-
-   # @Time    : 2020/5/12 21:11
-   # @Author  : chineseluo
-   # @Email   : 848257135@qq.com
-   # @File    : run.py
-   # @Software: PyCharm
-   from Base.base import Base
-   from selenium import webdriver
-   from PageObject.elemParams import Login_page_elem
-   
-   ```
-   
 5. 在TestCases下面创建一个test_login.py，导入Base.requestEngine.start_run_case方法，用于用例执行
 
    
