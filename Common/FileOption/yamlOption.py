@@ -20,7 +20,7 @@ class YamlFileOption:
     @staticmethod
     def read_yaml(file):
         """
-        读取yml文件
+        Read YML file
         :param file:
         :return:
         """
@@ -30,6 +30,5 @@ class YamlFileOption:
             fr.close()
             return yaml_info
         else:
-            print(file, '文件不存在')
-            logging.error('文件不存在！{}'.format(file))
+            logging.error('File does not exist！{}'.format(file))
             return None

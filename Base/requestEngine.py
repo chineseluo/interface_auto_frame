@@ -21,7 +21,7 @@ from .baseRequest import BaseRequest
 
 def check_assertion(res, checker):
     """
-    根据checker传入的对象进行数据提取，checker可能是一个嵌套列表，嵌套元组
+    The data is extracted according to the objects passed in by the checker. The checker may be a nested list or tuple
     :param res:
     :param checker:
     :return:
@@ -45,12 +45,13 @@ def check_assertion(res, checker):
             logging.error(f"Assert Fail,Expected Value：{checker[1]}，响应数据：{res}")
             raise AssertionError
     else:
-        logging.error(f"请输入正确的检查器参数，仅支持list or tuple，错误参数为：{checker}")
+        logging.error(f"Please enter the correct checker parameters, only supported list or tuple，The error parameter "
+                      f"is：{checker}")
 
 
 def url_replace(url: Text, url_converter) -> Text:
     """
-    用于对URL中的&参数进行转换
+    Used to convert the & parameter in the URL
     :param url:
     :param url_converter:
     :return:
@@ -62,7 +63,8 @@ def url_replace(url: Text, url_converter) -> Text:
     elif isinstance(url_converter, Text):
         replace_url = url.replace("$", url_converter)
     else:
-        logging.error(f"请输入正确的参数器参数，仅支持list or tuple，错误参数为：{url_converter}")
+        logging.error(f"Please enter the correct checker parameters, only supported list or tuple，The error parameter "
+                      f"is：{url_converter}")
     return replace_url
 
 
@@ -104,7 +106,7 @@ def start_run_case(params_object, params_mark, session_connection=None, checker=
                                     send_params=None, send_data=params_dict['data'],
                                     send_json=params_dict['json'], headers=params_dict['headers'], **kwargs)
     if checker:
-        # 根据jmespath_rule和对比值进行判断，需要支持多重判断
+        # According to jmespath_rule and contrast value are used to judge, which needs to support multiple judgments
         check_assertion(ost_rep_resp.response, checker)
     print(type(ost_rep_resp))
     return ost_rep_resp

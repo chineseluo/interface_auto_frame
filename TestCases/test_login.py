@@ -23,7 +23,7 @@ class TestLogin:
 
     @allure.severity("blocker")
     @allure.story("Test Login")
-    @allure.title("测试登录")
+    @allure.title("test login")
     def test_login(self):
         result = start_run_case(Login, "用户权限")
         print(result)

@@ -27,23 +27,21 @@ conf_server_info = YamlFileOption.read_yaml(conf_yaml_path)["server_info"]
 
 class BaseRequest:
     """
-    封装requests库中常用的四种请求方式，通过提供一个公共方法，根据yaml中的get/post/delete/put进行判断，调用不同的私有方法
+    Encapsulate the four common request methods in requests library, and call different private methods according to
+    get / post / delete / put in yaml by providing a public method
     """
 
     def __init__(self):
-        # 获取base_url
+        # get base_url
         self.__base_url = conf_server_info["protocol"] + '://' + conf_server_info["base_url"]
         # 是否开启SSL验证
         self.__verify = conf_server_info["verify"]
 
     @staticmethod
     def __get(url, params=None, jmespath_rule=None, **kwargs):
-        logging.info(url)
-        logging.info(params)
         if jmespath_rule:
             get_result = jmespath.search(jmespath_rule, requests.get(url=url, params=params, **kwargs).json())
         else:
-            logging.info("进入get")
             get_result = requests.get(url=url, params=params, **kwargs)
         return get_result
 

@@ -12,11 +12,16 @@
 ------------------------------------
 """
 import json
-import logging
 from loguru import logger
 
 
 def log_output(ost_model, ost_type):
+    """
+    Only used in console for request response model log output beautification
+    :param ost_model: OST request or response model
+    :param ost_type:OST type(request or response)
+    :return:
+    """
     msg = f"\n================== {ost_type} details ==================\n"
     for key, value in ost_model.dict().items():
         if isinstance(value, dict):

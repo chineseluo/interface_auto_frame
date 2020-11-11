@@ -19,7 +19,7 @@ class String:
     @staticmethod
     def transfer_md5(msg: str):
         """
-        对字符串进行md5加密
+        MD5 encryption of string
         :param msg:
         :return:
         """

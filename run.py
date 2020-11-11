@@ -16,6 +16,6 @@ import pytest
 
 if __name__ == '__main__':
     pytest.main()
-    # 生成allure报告
+    # Generate assure Report
     cmd = 'allure generate Report/allure-results -o Report/allure-report -c'
     os.system(cmd)

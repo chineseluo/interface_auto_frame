@@ -17,6 +17,6 @@ import pytest
 
 @pytest.fixture()
 def function_fixture():
-    print("运行于函数前")
+    print("Run before function")
     yield
-    print("运行于函数后")
+    print("Run after function")
