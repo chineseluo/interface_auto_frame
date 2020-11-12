@@ -63,8 +63,8 @@ def url_replace(url: Text, url_converter) -> Text:
     elif isinstance(url_converter, Text):
         replace_url = url.replace("$", url_converter)
     else:
-        logging.error(f"Please enter the correct checker parameters, only supported list or tuple，The error parameter "
-                      f"is：{url_converter}")
+        logging.error(f"Please enter the correct checker parameters, only supported list or tuple,The error parameter "
+                      f"is:{url_converter}")
     return replace_url
 
 
@@ -91,7 +91,6 @@ def start_run_case(params_object, params_mark, session_connection=None, checker=
     if files:
         params_dict['files'].update(files)
     # receive a request and response object
-    logging.info(params_dict['params'])
     ost_req_argv = OSTReqArgv(
         part_url=part_url,
         method=params_dict['method'].upper(),
@@ -108,7 +107,6 @@ def start_run_case(params_object, params_mark, session_connection=None, checker=
     if checker:
         # According to jmespath_rule and contrast value are used to judge, which needs to support multiple judgments
         check_assertion(ost_rep_resp.response, checker)
-    print(type(ost_rep_resp))
     return ost_rep_resp
 
 

@@ -63,7 +63,6 @@ class BaseRequest:
 
     @staticmethod
     def __post(url=None, data=None, json=None, jmespath_rule=None, **kwargs):
-        print(data)
         if jmespath_rule:
             post_result = jmespath.search(jmespath_rule, requests.post(url=url, data=data, json=json, **kwargs).json())
         else:
@@ -93,7 +92,7 @@ class BaseRequest:
         elif method == MethodEnum.PUT:
             result = self.__put(data=send_data, url=self.__base_url + part_url, verify=self.__verify, **kwargs)
         else:
-            logging.error("请传递正确的请求方法参数！当前错误参数为：{}".format(method))
+            logging.error(f"Please pass the correct request method parameters! The current error parameter is:{method}")
         ost_req = OSTReqData(
             method=result.request.method,
             url=result.request.url,
@@ -115,7 +114,7 @@ class BaseRequest:
             request=ost_req,
             response=ost_resp
         )
-        logging.info(f"输出对象{ost_rep_resp}")
+        logging.info(f"Output object:{ost_rep_resp}")
         return ost_rep_resp
 
 
